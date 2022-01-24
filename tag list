@@ -1,0 +1,39 @@
+local OVERSEER = {
+	1236930888, -- Me
+	2547468265, -- Josh
+}
+local ADMINS = {
+	322099414, -- Bryce
+	322100172, -- Blake
+	1585524752, -- Tanq
+}
+local DEVELOPER = {
+	3072641139,
+}
+local STARS = {
+	658295277,
+}
+local LEGEND = {
+	658295277,
+}
+
+local formatNumber = (function(n)
+	n = tostring(n)
+	return n:reverse():gsub("%d%d%d", "%1,"):reverse():gsub("^,", "")
+end)
+
+game.Players.PlayerAdded:Connect(function(plr)
+	plr.CharacterAdded:Connect(function(char)
+		if table.find(OVERSEER, plr.UserId) then
+			char.Humanoid.DisplayName =  ('[👑]' .. char.Humanoid.DisplayName) 
+		elseif table.find(ADMINS, plr.UserId) then
+			char.Humanoid.DisplayName = ('[💎]' .. char.Humanoid.DisplayName)
+		elseif table.find(DEVELOPER, plr.UserId) then
+			char.Humanoid.DisplayName =  ('[📜]' .. char.Humanoid.DisplayName)
+		elseif table.find(STARS, plr.UserId) then
+			char.Humanoid.DisplayName =  ('[⭐]' .. char.Humanoid.DisplayName)
+		elseif table.find(LEGEND, plr.UserId) then
+			char.Humanoid.DisplayName =  ('[🌟]' .. char.Humanoid.DisplayName) 
+		end
+	end)
+end)
